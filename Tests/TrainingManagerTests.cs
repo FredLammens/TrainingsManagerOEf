@@ -442,35 +442,114 @@ namespace Tests
                         .WithMessage("Average speed invalid value");
         }
         #endregion
-        #region GenerateMonthlyReportTest
+        #region GenerateMonthlyReportTests
         [TestMethod]
         public void GenerateMonthlyCyclingReportTest()
         {
             //Arrange = initialisatie objecten en kent waarden van gegevens toe aan methoden 
-
+            int year = 1996;
+            int month = 1;
+            //DB testCyclingSessions
+            TrainingManager t = new TrainingManager(new UnitOfWork(new TrainingContextTest(false)));
+            //Cyclingreport
+            #region AddCyclingTraining maxDistanceSession
+            DateTime now = new DateTime(1996, 1, 23); float distance = 257.20f; TimeSpan time = new TimeSpan(12, 05, 10);
+            float averageSpeed = 30.00f; int averageWatt = 200; TrainingType tt = TrainingType.Endurance; string comment = "Good job"; BikeType bt = BikeType.RacingBike;
+            t.AddCyclingTraining(now, distance, time, averageSpeed, averageWatt, tt, comment, bt);
+            #endregion
+            #region AddCyclingTraining2 maxSpeedSession
+            DateTime tommorow = new DateTime(1996, 1, 24); float distance2 = 120.40f; TimeSpan time2 = new TimeSpan(6, 03, 08);
+            float averageSpeed2 = 50.00f; int averageWatt2 = 200; TrainingType tt2 = TrainingType.Endurance; BikeType bt2 = BikeType.MountainBike;
+            t.AddCyclingTraining(tommorow, distance2, time2, averageSpeed2, averageWatt2, tt2, comment, bt2);
+            #endregion
+            #region AddCyclingTraining3 maxWattSession
+            DateTime afterTommorow = new DateTime(1996, 1, 25); float distance3 = 110.40f; TimeSpan time3 = new TimeSpan(6, 03, 08);
+            float averageSpeed3 = 30.00f; int averageWatt3 = 400; TrainingType tt3 = TrainingType.Endurance; BikeType bt3 = BikeType.MountainBike;
+            t.AddCyclingTraining(afterTommorow, distance3, time3, averageSpeed3, averageWatt3, tt3, comment, bt3);
+            #endregion
             //Act = roept testen method op met ingestgelde parameters
-
+            Report rapport = t.GenerateMonthlyCyclingReport(year, month);
             //Assert = verifieert actie van geteste methoden
-           
+            //Test findMAxSessions
+            rapport.MaxDistanceSessionCycling.Distance.Should().Be(257.20f);
+            rapport.MaxSpeedSessionCycling.AverageSpeed.Should().Be(50.00f);
+            rapport.MaxWattSessionCycling.AverageWatt.Should().Be(400);
+            //Test TotalSessions
+            rapport.CyclingSessions.Should().Be(3);
+            rapport.TotalCyclingDistance.Should().Be(488.00f);
+            rapport.TotalCyclingTrainingTime.Should().Be(new TimeSpan(24,11,26));
+            //Test Timeline
+            rapport.TimeLine.Should().NotBeEmpty();
+
         }
         [TestMethod]
         public void GenerateMonthlyRunningReportTest()
         {
             //Arrange = initialisatie objecten en kent waarden van gegevens toe aan methoden 
-
+            int year = 1996;
+            int month = 1;
+            //DB testCyclingSessions
+            TrainingManager t = new TrainingManager(new UnitOfWork(new TrainingContextTest(false)));
+            #region runningTraining maxDistanceSessionRunning
+            DateTime now = new DateTime(1996, 1, 23); int distance = 500;
+            TimeSpan time = new TimeSpan(0, 15, 20); float averageSpeed = 15.00f;
+            t.AddRunningTraining(now, distance, time, averageSpeed, TrainingType.Interval, "good job!");
+            #endregion
+            #region runningTraining maxSpeedSessionRunning
+            int distance2 = 200;
+            TimeSpan time2 = new TimeSpan(0, 20, 20); float averageSpeed2 = 25.00f;
+            t.AddRunningTraining(now, distance2, time2, averageSpeed2, TrainingType.Recuperation, "awesome new SpeedRecord");
+            #endregion
             //Act = roept testen method op met ingestgelde parameters
-
+            Report rapport = t.GenerateMonthlyRunningReport(year, month);
             //Assert = verifieert actie van geteste methoden
-
+            rapport.MaxDistanceSessionCycling.Distance.Should().Be(500);
+            rapport.MaxSpeedSessionRunning.Should().Be(25.00f);
+            rapport.TotalSessions.Should().Be(2);
+            rapport.TotalRunningDistance.Should().Be(700);
+            rapport.TotalTrainingTime.Should().Be(new TimeSpan(0, 35, 40));
+            rapport.TimeLine.Should().NotBeEmpty();
         }
         [TestMethod]
         public void GenerateMonthlyTrainingReportTest()
         {
             //Arrange = initialisatie objecten en kent waarden van gegevens toe aan methoden 
-
+            int year = 1996;
+            int month = 1;
+            //DB testCyclingSessions
+            TrainingManager t = new TrainingManager(new UnitOfWork(new TrainingContextTest(false)));
+            //Cyclingreport
+            #region AddCyclingTraining maxDistanceSession
+            DateTime now = new DateTime(1996, 1, 23); float distance = 257.20f; TimeSpan time = new TimeSpan(12, 05, 10);
+            float averageSpeed = 30.00f; int averageWatt = 200; TrainingType tt = TrainingType.Endurance; string comment = "Good job"; BikeType bt = BikeType.RacingBike;
+            t.AddCyclingTraining(now, distance, time, averageSpeed, averageWatt, tt, comment, bt);
+            #endregion
+            #region AddCyclingTraining2 maxSpeedSession
+            DateTime tommorow = new DateTime(1996, 1, 24); float distance2 = 120.40f; TimeSpan time2 = new TimeSpan(6, 03, 08);
+            float averageSpeed2 = 50.00f; int averageWatt2 = 200; TrainingType tt2 = TrainingType.Endurance; BikeType bt2 = BikeType.MountainBike;
+            t.AddCyclingTraining(tommorow, distance2, time2, averageSpeed2, averageWatt2, tt2, comment, bt2);
+            #endregion
+            #region AddCyclingTraining3 maxWattSession
+            DateTime afterTommorow = new DateTime(1996, 1, 25); float distance3 = 110.40f; TimeSpan time3 = new TimeSpan(6, 03, 08);
+            float averageSpeed3 = 30.00f; int averageWatt3 = 400; TrainingType tt3 = TrainingType.Endurance; BikeType bt3 = BikeType.MountainBike;
+            t.AddCyclingTraining(afterTommorow, distance3, time3, averageSpeed3, averageWatt3, tt3, comment, bt3);
+            #endregion
+            //RunningReport
+            #region runningTraining maxDistanceSessionRunning
+            int distance4 = 500;
+            TimeSpan time4 = new TimeSpan(0, 15, 20); float averageSpeed4 = 15.00f;
+            t.AddRunningTraining(now, distance4, time4, averageSpeed4, TrainingType.Interval, "good job!");
+            #endregion
+            #region runningTraining maxSpeedSessionRunning
+            int distance5 = 200;
+            TimeSpan time5 = new TimeSpan(0, 20, 20); float averageSpeed5 = 25.00f;
+            t.AddRunningTraining(now, distance5, time5, averageSpeed5, TrainingType.Recuperation, "awesome new SpeedRecord");
+            #endregion
             //Act = roept testen method op met ingestgelde parameters
+            Report rapport = t.GenerateMonthlyTrainingsReport(year, month);
 
             //Assert = verifieert actie van geteste methoden
+
 
         }
         #endregion
