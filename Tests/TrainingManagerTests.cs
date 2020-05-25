@@ -5,6 +5,7 @@ using DomainLibrary.Domain;
 using DataLayer;
 using System.Security.Cryptography.X509Certificates;
 using FluentAssertions;
+using System.Linq;
 
 namespace Tests
 {
@@ -536,26 +537,53 @@ namespace Tests
             #endregion
             //RunningReport
             #region runningTraining maxDistanceSessionRunning
+            DateTime now4 = new DateTime(1996, 1, 26);
             int distance4 = 500;
             TimeSpan time4 = new TimeSpan(0, 15, 20); float averageSpeed4 = 15.00f;
-            t.AddRunningTraining(now, distance4, time4, averageSpeed4, TrainingType.Interval, "good job!");
+            t.AddRunningTraining(now4, distance4, time4, averageSpeed4, TrainingType.Interval, "good job!");
             #endregion
             #region runningTraining maxSpeedSessionRunning
+            DateTime now5 = new DateTime(1996, 1, 26,12,20,30);
             int distance5 = 200;
             TimeSpan time5 = new TimeSpan(0, 20, 20); float averageSpeed5 = 25.00f;
-            t.AddRunningTraining(now, distance5, time5, averageSpeed5, TrainingType.Recuperation, "awesome new SpeedRecord");
+            t.AddRunningTraining(now5, distance5, time5, averageSpeed5, TrainingType.Recuperation, "awesome new SpeedRecord");
             #endregion
             //Act = roept testen method op met ingestgelde parameters
             Report rapport = t.GenerateMonthlyTrainingsReport(year, month);
-
             //Assert = verifieert actie van geteste methoden
-
-
+            rapport.TimeLine.Count.Should().Be(5);
+            rapport.Rides.Count.Should().Be(3);
+            rapport.Runs.Count.Should().Be(2);
         }
         #endregion
-        #region RemoveTrainings
-        #endregion
         #region ConstructorTests Running/CyclingSession
+        [TestMethod]
+        public void TestRunningSessionConstructor()
+        {
+            //Arrange = initialisatie objecten en kent waarden van gegevens toe aan methoden 
+            DateTime now = DateTime.Now;
+            int distance = 4000;
+            TimeSpan time = new TimeSpan(0, 10, 20);
+            float? averageSpeed = null;
+            //Act = roept testen method op met ingestgelde parameters
+            RunningSession rs = new RunningSession(now, distance, time, averageSpeed, TrainingType.Endurance, "comment");
+            //Assert = verifieert actie van geteste methoden
+            rs.AverageSpeed.Should().Be(23.225807F);
+        }
+        [TestMethod]
+        public void TestCyclingSessionConstructor() 
+        {
+            //Arrange = initialisatie objecten en kent waarden van gegevens toe aan methoden 
+            DateTime now = DateTime.Now;
+            float distance = 400;
+            TimeSpan time = new TimeSpan(0, 10, 20);
+            float? averageSpeed = null;
+            int averageWatt = 400;
+            //Act = roept testen method op met ingestgelde parameters
+            CyclingSession cs = new CyclingSession(now, distance, time, averageSpeed, averageWatt, TrainingType.Interval, "comment", BikeType.MountainBike);
+            //Assert = verifieert actie van geteste methode
+            cs.AverageSpeed.Should().Be(2322.5806f);
+        }
         #endregion
     }
 }
