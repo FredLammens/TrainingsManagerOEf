@@ -29,7 +29,7 @@ namespace TrainingManagerUI
 
         private void btnAddCyclingSession_Click(object sender, RoutedEventArgs e)
         {
-            CyclingSessionAddWindow csa = new CyclingSessionAddWindow(m);
+            CyclingSessionAddWindow csa = new CyclingSessionAddWindow(m,this);
             csa.Show();
         }
 
@@ -48,6 +48,7 @@ namespace TrainingManagerUI
                 MessageBox.Show($"Nothing selected", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #region menu
 
         private void MenuItemHome_Click(object sender, RoutedEventArgs e)
         {
@@ -68,6 +69,12 @@ namespace TrainingManagerUI
             LatestSessionWindow lw = new LatestSessionWindow(m);
             lw.Show();
             Close();
+        }
+        #endregion
+        public void refreshListBox() 
+        {
+            //refresh doesnt work
+            cyclingSessionBox.ItemsSource = m.GetAllCyclingSessions();
         }
     }
 }

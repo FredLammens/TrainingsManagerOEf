@@ -40,7 +40,7 @@ namespace TrainingManagerUI
             Report rapport;
             if (yearW || monthW)
             {
-                if (cycling == true && running == true)
+                if (cycling == true && running == true) //needs to be fixed
                 {
                     rapport = m.GenerateMonthlyTrainingsReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.TimeLine;

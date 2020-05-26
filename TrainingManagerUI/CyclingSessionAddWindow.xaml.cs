@@ -19,10 +19,12 @@ namespace TrainingManagerUI
     public partial class CyclingSessionAddWindow : Window
     {
         private TrainingManager m;
-        public CyclingSessionAddWindow(TrainingManager trainingmg)
+        private CyclingSessionWindow parent;
+        public CyclingSessionAddWindow(TrainingManager trainingmg, CyclingSessionWindow parent)
         {
             InitializeComponent();
             m = trainingmg;
+            this.parent = parent;
             DatePickerCycling.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
             trainingTypeCyclingSession.ItemsSource = Enum.GetNames(typeof(TrainingType)); // insert trainingtypes
             typeFietsListBox.ItemsSource = Enum.GetNames(typeof(BikeType));//Insert biketypes
@@ -66,11 +68,12 @@ namespace TrainingManagerUI
             else if (!averageSpeedW)
             {
                 when = (DateTime)DatePickerCycling.SelectedDate;
-                when.Add(whenAdditional);
+                when =  when.Add(whenAdditional);
                 try
                 {
                     m.AddCyclingTraining(when, distance, time, null,averageWatt, trainingtype, comment,bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                    parent.refreshListBox();
                 }
                 catch (Exception)
                 {
@@ -80,11 +83,12 @@ namespace TrainingManagerUI
             else
             {
                 when = (DateTime)DatePickerCycling.SelectedDate;
-                when.Add(whenAdditional);
+                when = when.Add(whenAdditional);
                 try
                 {
                     m.AddCyclingTraining(when, distance, time, averageSpeed,averageWatt, trainingtype, comment,bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                    parent.refreshListBox();
                 }
                 catch (Exception)
                 {

@@ -24,7 +24,7 @@ namespace TrainingManagerUI
             InitializeComponent();
             m = trainingmg;
         }
-
+        #region menu
         private void Home_Click(object sender, RoutedEventArgs e)
         {
                 MainWindow w = new MainWindow();
@@ -45,9 +45,13 @@ namespace TrainingManagerUI
                 rw.Show();
             Close();
         }
-
+        #endregion
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            bool? cycling = cyclingCheckBox.IsChecked;
+            bool? running = runningCheckBox.IsChecked;
+            int amount;
+            bool amountW = int.TryParse(amountSession.Text, out amount);
 
         }
     }
