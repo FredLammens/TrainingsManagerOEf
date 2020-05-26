@@ -1,0 +1,77 @@
+﻿<Window x:Class="TrainingManagerUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrainingManagerUI"
+        mc:Ignorable="d"
+        Title="TrainingManager" Height="360" Width="640">
+    <Grid>
+        <Grid>
+            <!--Algemeen-->
+            <!--1-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <!--Menu-->
+                <DockPanel Grid.Row="0">
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem Header="CyclingSession">
+                            <MenuItem Header="Add CyclingSession"/>
+                            <MenuItem Header="Remove CyclingSession"/>
+                        </MenuItem>
+                        <MenuItem Header="RunningSession">
+                            <MenuItem Header="Add RunningSession"/>
+                            <MenuItem Header="Remove RunningSession"/>
+                        </MenuItem>
+                        <MenuItem Header="Latest Sessions"/>
+                    </Menu>
+                </DockPanel>
+                <!--Titel-->
+                <Label Grid.Row="1">
+                    <TextBlock TextDecorations="Underline" FontSize="20" Margin="0,15">Algemeen per maand</TextBlock>
+                </Label>
+                <!--Monthly Sessions-->
+                <!--ToDo: Replace with chart-->
+                <DataGrid Grid.Row="2" x:Name="trainingPerMonthDataGrid" Margin="3"/>
+                <!--FormSpace-->
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                        <CheckBox x:Name="cyclingCheckBox" Content="Cycling" FlowDirection="RightToLeft" Margin="5"/>
+                        <CheckBox x:Name="runningCheckBox" Content="Running" FlowDirection="RightToLeft" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column ="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="52*"/>
+                                <ColumnDefinition Width="105*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Year: " Grid.Column="0"/>
+                            <TextBox x:Name="yearTextBox" Grid.Column="1"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Month: " Grid.Column="0"/>
+                            <TextBox x:Name="monthTextBox" Grid.Column="1"/>
+                        </Grid>
+                    </StackPanel>
+                    <Grid Grid.Column="2">
+                        <Button Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

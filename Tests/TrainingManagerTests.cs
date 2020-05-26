@@ -504,12 +504,11 @@ namespace Tests
             //Act = roept testen method op met ingestgelde parameters
             Report rapport = t.GenerateMonthlyRunningReport(year, month);
             //Assert = verifieert actie van geteste methoden
-            rapport.MaxDistanceSessionCycling.Distance.Should().Be(500);
-            rapport.MaxSpeedSessionRunning.Should().Be(25.00f);
+            rapport.MaxDistanceSessionRunning.Distance.Should().Be(500);
+            rapport.MaxSpeedSessionRunning.AverageSpeed.Should().Be(25.00f);
             rapport.TotalSessions.Should().Be(2);
             rapport.TotalRunningDistance.Should().Be(700);
             rapport.TotalTrainingTime.Should().Be(new TimeSpan(0, 35, 40));
-            rapport.TimeLine.Should().NotBeEmpty();
         }
         [TestMethod]
         public void GenerateMonthlyTrainingReportTest()
