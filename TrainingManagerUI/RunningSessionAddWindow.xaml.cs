@@ -65,7 +65,7 @@ namespace TrainingManagerUI
                     m.AddRunningTraining(when, distance, time, null, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception)//TODO: uitgebreider maken
+                catch (Exception)
                 {
                     MessageBox.Show("Recheck your values pls", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -79,7 +79,7 @@ namespace TrainingManagerUI
                     m.AddRunningTraining(when, distance, time, averageSpeed, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception)//TODO: uitgebreide maken
+                catch (Exception)
                 {
                     MessageBox.Show("Recheck your values pls", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

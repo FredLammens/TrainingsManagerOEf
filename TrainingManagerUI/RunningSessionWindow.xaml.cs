@@ -21,7 +21,6 @@ namespace TrainingManagerUI
     /// </summary>
     public partial class RunningSessionWindow : Window
     {
-        //TODO: add InotifyPropertyChanged for updating to RunningSession
         private TrainingManager m;
         public RunningSessionWindow(TrainingManager trainingmg)
         {

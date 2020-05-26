@@ -22,9 +22,6 @@ namespace TrainingManagerUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        //verbetering : RunningSession en CyclingSession 1 window met visibility to whatever is selected 
-        //databinding in xaml , hardcode verwijderen
-        //minimum size adden
         private TrainingManager m;
         public MainWindow()
         {
@@ -41,8 +38,6 @@ namespace TrainingManagerUI
             bool yearW = int.TryParse(yearTextBox.Text, out year);
             bool monthW = int.TryParse(monthTextBox.Text, out month);
             Report rapport;
-            //cycling en running nakijken + sorteren op maandbasis + beste toevoegen aan overzicht 
-            //checken voor values !
             if (yearW || monthW)
             {
                 if (cycling == true && running == true)
