@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -27,7 +28,7 @@ namespace DataLayer.Repositories
         }
         public IEnumerable<CyclingSession> FindAll()
         {
-            return context.CyclingSessions.OrderBy(s => s.When).AsEnumerable<CyclingSession>();
+            return context.CyclingSessions.AsNoTracking().OrderBy(s => s.When).AsEnumerable<CyclingSession>();//fix for remove
         }
 
         public IEnumerable<CyclingSession> Find(DateTime start, DateTime stop)

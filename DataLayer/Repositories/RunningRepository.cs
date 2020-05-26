@@ -1,9 +1,9 @@
 ﻿using DomainLibrary.Domain;
 using DomainLibrary.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataLayer.Repositories
 {
@@ -27,7 +27,7 @@ namespace DataLayer.Repositories
         }
         public IEnumerable<RunningSession> FindAll()
         {
-            return context.RunningSessions.OrderBy(s => s.When).AsEnumerable<RunningSession>();
+            return context.RunningSessions.AsNoTracking().OrderBy(s => s.When).AsEnumerable<RunningSession>(); //fix for remove
         }
 
         public IEnumerable<RunningSession> Find(DateTime start, DateTime stop)
