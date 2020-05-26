@@ -29,7 +29,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Datum start training *: " Grid.Column="0"/>
+                <Label Content="Date start training *: " Grid.Column="0"/>
                 <DatePicker x:Name="DatePickerCycling" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="2">
@@ -37,7 +37,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Tijdstip*: " Grid.Column="0"/>
+                <Label Content="Time of day*: " Grid.Column="0"/>
                 <TextBox x:Name="tijdStipCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="3">
@@ -45,7 +45,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Afstand* (in km): " Grid.Column="0"/>
+                <Label Content="distance* (in km): " Grid.Column="0"/>
                 <TextBox x:Name="afstandCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="4">
@@ -53,7 +53,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Tijdsduur*: " Grid.Column="0"/>
+                <Label Content="length of time*: " Grid.Column="0"/>
                 <TextBox x:Name="tijdsduurCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="5">
@@ -61,7 +61,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Gemiddelde snelheid: " Grid.Column="0"/>
+                <Label Content="average speed: " Grid.Column="0"/>
                 <TextBox x:Name="gemiddeldeSnelheidCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="6">
@@ -69,7 +69,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Gemiddelde wattage*: " Grid.Column="0"/>
+                <Label Content="Average wattage*: " Grid.Column="0"/>
                 <TextBox x:Name="avgWattage" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="7">
@@ -85,7 +85,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Commentaar: " Grid.Column="0"/>
+                <Label Content="Comment: " Grid.Column="0"/>
                 <ScrollViewer Grid.Column="1">
                     <TextBox x:Name="commentaarCyclingSession"  Margin="5"/>
                 </ScrollViewer>
@@ -95,7 +95,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Type fiets*: " Grid.Column="0"/>
+                <Label Content="Type bike*: " Grid.Column="0"/>
                 <ListBox x:Name="typeFietsListBox" Grid.Column="1" Margin="5"/>
             </Grid>
             <Button Content="Add CyclingSession" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>

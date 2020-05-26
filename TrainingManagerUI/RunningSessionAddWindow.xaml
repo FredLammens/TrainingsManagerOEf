@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Datum start training *: " Grid.Column="0"/>
+                <Label Content="Date start training *: " Grid.Column="0"/>
                 <DatePicker x:Name="DatePickerRunning" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="2">
@@ -35,7 +35,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Tijdstip*: " Grid.Column="0"/>
+                <Label Content="Time of day*: " Grid.Column="0"/>
                 <TextBox x:Name="tijdStipRunningSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="3">
@@ -43,7 +43,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Afstand* (in m): " Grid.Column="0"/>
+                <Label Content="distance* (in m): " Grid.Column="0"/>
                 <TextBox x:Name="afstandRunningSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="4">
@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Tijdsduur*: " Grid.Column="0"/>
+                <Label Content="length of time*: " Grid.Column="0"/>
                 <TextBox x:Name="tijdsduurRunningSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="5">
@@ -59,7 +59,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Gemiddelde snelheid: " Grid.Column="0"/>
+                <Label Content="Average speed: " Grid.Column="0"/>
                 <TextBox x:Name="gemiddeldeSnelheidRunningSession" Grid.Column="1" Margin="5" />
             </Grid>
             <Grid Grid.Row="6">
@@ -75,7 +75,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Commentaar: " Grid.Column="0"/>
+                <Label Content="Comment: " Grid.Column="0"/>
                 <ScrollViewer Grid.Column="1">
                     <TextBox x:Name="commentaarRunningSession"  Margin="5"/>
                 </ScrollViewer>

@@ -49,18 +49,40 @@ namespace TrainingManagerUI
                     rapport = m.GenerateMonthlyTrainingsReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.TimeLine;
                     trainingPerMonthDataGrid.Items.Refresh();
+                    //beste toevoegen
+                    besteTrainingen.Text = "CyclingSSession \n" +
+                                           "----------------\n" +
+                                           $"MaxDistance: {rapport.MaxDistanceSessionCycling} \n" +
+                                           $"MaxSpeed: {rapport.MaxSpeedSessionCycling}\n" +
+                                           $"MaxWatt: {rapport.MaxWattSessionCycling}\n\n" +
+                                           "RunningSession \n" +
+                                            "----------------\n" +
+                                           $"MaxDistance: {rapport.MaxDistanceSessionRunning}\n" +
+                                           $"MaxSpeed: {rapport.MaxSpeedSessionRunning}\n";
                 }
                 else if (cycling == true)
                 {
                     rapport = m.GenerateMonthlyCyclingReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.Rides;
                     trainingPerMonthDataGrid.Items.Refresh();
+                    //beste toevoegen 
+                    besteTrainingen.Text = "CyclingSSession \n" +
+                                           "----------------\n" +
+                                           $"MaxDistance: {rapport.MaxDistanceSessionCycling}\n" +
+                                           $"MaxSpeed: {rapport.MaxSpeedSessionCycling}\n" +
+                                           $"MaxWatt: {rapport.MaxWattSessionCycling} \n";
                 }
                 else if (running == true)
                 {
                     rapport = m.GenerateMonthlyRunningReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.Runs;
                     trainingPerMonthDataGrid.Items.Refresh();
+                    //beste toevoegen
+                    besteTrainingen.Text = "RunningSession \n" +
+                                           "----------------\n" +
+                                           $"MaxDistance: {rapport.MaxDistanceSessionRunning} m \n" +
+                                           $"MaxSpeed: {rapport.MaxSpeedSessionRunning} m/s \n";
+
                 }
                 else
                     throw new ArgumentException("Please check at least one checkbox");
