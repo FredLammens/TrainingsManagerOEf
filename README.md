@@ -25,3 +25,4 @@ Menu
 ------------------------------------------------------------------------------------------------------------------------------------
 
 Later : aan alle windows toevoegen zodat je bij het drukken van menu vorige window kunt sluiten.
+Later : Menu in 1 eventHAndler steken ?
