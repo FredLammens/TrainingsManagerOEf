@@ -38,8 +38,12 @@ namespace TrainingManagerUI
             bool yearW = int.TryParse(yearTextBox.Text, out year);
             bool monthW = int.TryParse(monthTextBox.Text, out month);
             Report rapport;
-            if (yearW || monthW)
+            try
             {
+                if (!yearW)
+                    throw new ArgumentException("year is not correct or not inserted");
+                else if (!monthW)
+                    throw new ArgumentException("Month is not correct or not inserted");
                 if (cycling == true && running == true) //needs to be fixed
                 {
                     rapport = m.GenerateMonthlyTrainingsReport(year, month);
@@ -52,20 +56,18 @@ namespace TrainingManagerUI
                     trainingPerMonthDataGrid.ItemsSource = rapport.Rides;
                     trainingPerMonthDataGrid.Items.Refresh();
                 }
-                else if(running == true)
+                else if (running == true)
                 {
                     rapport = m.GenerateMonthlyRunningReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.Runs;
                     trainingPerMonthDataGrid.Items.Refresh();
                 }
+                else
+                    throw new ArgumentException("Please check at least one checkbox");
             }
-            else if (!yearW)
+            catch (Exception ex)
             {
-                MessageBox.Show("year is not correct or not inserted", "Trainingmanager", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!monthW) 
-            {
-                MessageBox.Show("Month is not correct or not inserted", "Trainingmanager", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Home", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

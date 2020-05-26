@@ -52,7 +52,10 @@ namespace TrainingManagerUI
             bool? running = runningCheckBox.IsChecked;
             int amount;
             bool amountW = int.TryParse(amountSession.Text, out amount);
-
+            if (cycling == true || running == true) 
+            {
+            }
+            //List<CyclingSession> cyles = m.GetPreviousCyclingSessions();
         }
     }
 }

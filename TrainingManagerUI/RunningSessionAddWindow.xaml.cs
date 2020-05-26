@@ -21,7 +21,7 @@ namespace TrainingManagerUI
     {
         private TrainingManager m;
         private RunningSessionWindow parent;
-        public RunningSessionAddWindow(TrainingManager trainingmg,RunningSessionWindow parent)
+        public RunningSessionAddWindow(TrainingManager trainingmg, RunningSessionWindow parent)
         {
             InitializeComponent();
             m = trainingmg;
@@ -42,51 +42,36 @@ namespace TrainingManagerUI
             bool whenAdditionalW = TimeSpan.TryParse(tijdStipRunningSession.Text, out whenAdditional);
             Enum.TryParse((string?)trainingTypeRunningSession.SelectedItem, out trainingtype);
             #endregion
-            if (!DatePickerRunning.SelectedDate.HasValue)
+            try
             {
-                MessageBox.Show("Date not entered!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!whenAdditionalW)
-            {
-                MessageBox.Show("Time not entered or incorrectly!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!distanceW)
-            {
-                MessageBox.Show("Distance not entered or incorrectly!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!timeW)
-            {
-                MessageBox.Show("Time not entered or incorrectly!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!averageSpeedW)
-            {
-                when = (DateTime)DatePickerRunning.SelectedDate;
-                when = when.Add(whenAdditional);
-                try
+                if (!DatePickerRunning.SelectedDate.HasValue)
+                    throw new ArgumentException("Date not entered!");
+                if (!whenAdditionalW)
+                    throw new ArgumentException("Time not entered or incorrectly!");
+                if (!distanceW)
+                    throw new ArgumentException("Distance not entered or incorrectly!");
+                if (!timeW)
+                    throw new ArgumentException("Time not entered or incorrectly!", "RunningSession");
+                if (!averageSpeedW)
                 {
+                    when = (DateTime)DatePickerRunning.SelectedDate;
+                    when = when.Add(whenAdditional);
                     m.AddRunningTraining(when, distance, time, null, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
                     parent.RefreshRunningSessions();
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("Recheck your values pls", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                when = (DateTime)DatePickerRunning.SelectedDate;
-                when = when.Add(whenAdditional);
-                try
-                {
+                    when = (DateTime)DatePickerRunning.SelectedDate;
+                    when = when.Add(whenAdditional);
                     m.AddRunningTraining(when, distance, time, averageSpeed, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
                     parent.RefreshRunningSessions();
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Recheck your values pls", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -45,55 +45,38 @@ namespace TrainingManagerUI
             Enum.TryParse((string?)trainingTypeCyclingSession.SelectedItem, out trainingtype);
             Enum.TryParse((string?)typeFietsListBox.SelectedItem, out bikeType);
             #endregion
-            if (!DatePickerCycling.SelectedDate.HasValue)
+            try
             {
-                MessageBox.Show("Date not entered!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!whenAdditionalW)
-            {
-                MessageBox.Show("Time not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!distanceW)
-            {
-                MessageBox.Show("Distance not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!timeW)
-            {
-                MessageBox.Show("Time not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!averageWattW) 
-            {
-                MessageBox.Show("Average Watt not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!averageSpeedW)
-            {
-                when = (DateTime)DatePickerCycling.SelectedDate;
-                when =  when.Add(whenAdditional);
-                try
+                if (!DatePickerCycling.SelectedDate.HasValue)
+                    throw new ArgumentException("Date not entered!");
+                if (!whenAdditionalW)
+                    throw new ArgumentException("Time not entered or incorrectly!");
+                if (!distanceW)
+                    throw new ArgumentException("Distance not entered or incorrectly!");
+                if (!timeW)
+                    throw new ArgumentException("Duration not entered or incorrectly!");
+                if (!averageWattW)
+                    throw new ArgumentException("Average Watt not entered or incorrectly!");
+                if (!averageSpeedW)
                 {
-                    m.AddCyclingTraining(when, distance, time, null,averageWatt, trainingtype, comment,bikeType);
+                    when = (DateTime)DatePickerCycling.SelectedDate;
+                    when = when.Add(whenAdditional);
+                    m.AddCyclingTraining(when, distance, time, null, averageWatt, trainingtype, comment, bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
                     parent.refreshListBox();
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("Recheck your values pls", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                when = (DateTime)DatePickerCycling.SelectedDate;
-                when = when.Add(whenAdditional);
-                try
-                {
-                    m.AddCyclingTraining(when, distance, time, averageSpeed,averageWatt, trainingtype, comment,bikeType);
+                    when = (DateTime)DatePickerCycling.SelectedDate;
+                    when = when.Add(whenAdditional);
+                    m.AddCyclingTraining(when, distance, time, averageSpeed, averageWatt, trainingtype, comment, bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
                     parent.refreshListBox();
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Recheck your values pls", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
