@@ -1,0 +1,28 @@
+﻿<Window x:Class="TrainingManagerUI.CyclingSessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrainingManagerUI"
+        mc:Ignorable="d"
+        Title="CyclingSessionRemoveWindow" Height="450" Width="800">
+    <Grid>
+        <DockPanel Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="313*"/>
+                    <ColumnDefinition Width="77*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Name="btnAddCyclingSession" Click="btnAddCyclingSession_Click"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Width="133">Add CyclingSession</Button>
+                    <Button Name="btnRemoveCyclingSession" Click="btnRemoveCyclingSession_Click"  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Width="133" >Remove CyclingSession</Button>
+                </Grid>
+                <ListBox Name="runninsSessionBox" DisplayMemberPath="Name" Margin="5,5,5,5" Grid.Column="0"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
