@@ -31,48 +31,56 @@ namespace TrainingManagerUI
 
         private void btnAddRunningSession_Click(object sender, RoutedEventArgs e)
         {
-            RunningSessionAddWindow rsa = new RunningSessionAddWindow(m,this);
+            RunningSessionAddWindow rsa = new RunningSessionAddWindow(m, this);
             rsa.Show();
         }
 
         private void btnRemoveRunningSession_Click(object sender, RoutedEventArgs e)
         {
-            RunningSession toRemove = (RunningSession) runninsSessionBox.SelectedItem;
-            List<int> toRemoveID = new List<int>(toRemove.Id);
-            List<int> CyclingSession = new List<int>();
-            if (runninsSessionBox.SelectedItem != null)
+            try
             {
-                m.RemoveTrainings(CyclingSession, toRemoveID);
-                MessageBox.Show($"{toRemove} is removed!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                RunningSession toRemove = (RunningSession)runninsSessionBox.SelectedItem;
+                List<int> toRemoveID = new List<int>() {toRemove.Id};
+                List<int> CyclingSession = new List<int>();
+                if (runninsSessionBox.SelectedItem != null)
+                {
+                    m.RemoveTrainings(CyclingSession, toRemoveID);
+                    MessageBox.Show($"{toRemove} is removed!", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Nothing selected", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else 
+            catch (Exception ex)
             {
-                MessageBox.Show($"Nothing selected", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MessageBox.Show(ex.Message, "Running session", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #region menu
         private void MenuItemHome_Click(object sender, RoutedEventArgs e)
         {
-                MainWindow w = new MainWindow();
-                w.Show();
+            MainWindow w = new MainWindow();
+            w.Show();
             Close();
         }
 
         private void MenuItemCycling_Click(object sender, RoutedEventArgs e)
         {
-                CyclingSessionWindow rw = new CyclingSessionWindow(m);
-                rw.Show();
+            CyclingSessionWindow rw = new CyclingSessionWindow(m);
+            rw.Show();
             Close();
         }
 
         private void MenuItemLatest_Click(object sender, RoutedEventArgs e)
         {
-                LatestSessionWindow lw = new LatestSessionWindow(m);
-                lw.Show();
+            LatestSessionWindow lw = new LatestSessionWindow(m);
+            lw.Show();
             Close();
         }
         #endregion
-        public void RefreshRunningSessions() 
+        public void RefreshRunningSessions()
         {
             runninsSessionBox.ItemsSource = m.GetAllRunningSessions();
         }

@@ -52,10 +52,31 @@ namespace TrainingManagerUI
             bool? running = runningCheckBox.IsChecked;
             int amount;
             bool amountW = int.TryParse(amountSession.Text, out amount);
-            if (cycling == true || running == true) 
+            try
             {
+                if (!amountW)
+                    throw new ArgumentException("amount is not entered");
+                if (cycling == true && running == true)
+                    throw new ArgumentException("pls select only one checkbox");
+                if (cycling == true)
+                {
+                    LatestSessionPerMonthDataGrid.ItemsSource = m.GetPreviousCyclingSessions(amount);
+                    LatestSessionPerMonthDataGrid.Items.Refresh();
+                }
+                else if (running == true)
+                {
+                    LatestSessionPerMonthDataGrid.ItemsSource = m.GetPreviousRunningSessions(amount);
+                    LatestSessionPerMonthDataGrid.Items.Refresh();
+                }
+                else 
+                {
+                    throw new ArgumentException("pls select at least one checkbox");
+                }
             }
-            //List<CyclingSession> cyles = m.GetPreviousCyclingSessions();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Latest Session", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

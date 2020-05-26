@@ -44,7 +44,7 @@ namespace TrainingManagerUI
                     throw new ArgumentException("year is not correct or not inserted");
                 else if (!monthW)
                     throw new ArgumentException("Month is not correct or not inserted");
-                if (cycling == true && running == true) //needs to be fixed
+                if (cycling == true && running == true)
                 {
                     rapport = m.GenerateMonthlyTrainingsReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.TimeLine;

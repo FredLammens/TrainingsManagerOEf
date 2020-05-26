@@ -36,7 +36,7 @@ namespace TrainingManagerUI
         private void btnRemoveCyclingSession_Click(object sender, RoutedEventArgs e)
         {
             CyclingSession toRemove = (CyclingSession)cyclingSessionBox.SelectedItem;
-            List<int> toRemoveID = new List<int>(toRemove.Id);
+            List<int> toRemoveID = new List<int>() { toRemove.Id };
             List<int> RunningSessions = new List<int>();
             if (cyclingSessionBox.SelectedItem != null) 
             {

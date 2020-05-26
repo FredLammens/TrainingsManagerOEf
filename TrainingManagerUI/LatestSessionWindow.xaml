@@ -32,7 +32,7 @@
                     <TextBlock TextDecorations="Underline" FontSize="20">Latest sessions</TextBlock>
                 </Label>
                 <!--Monthly Sessions-->
-                <DataGrid Grid.Row="2" x:Name="trainingPerMonthDataGrid" Margin="3"/>
+                <DataGrid Grid.Row="2" x:Name="LatestSessionPerMonthDataGrid" Margin="3"/>
                 <!--FormSpace-->
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -46,7 +46,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                         <Label Content="How many?"/>
-                        <TextBlock x:Name="amountSession" Margin="2"/>
+                        <TextBox x:Name="amountSession" Margin="2"/>
                     </StackPanel>
                     <Grid Grid.Column="2">
                         <Button Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>

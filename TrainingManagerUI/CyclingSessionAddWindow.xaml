@@ -45,7 +45,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Afstand* (in m): " Grid.Column="0"/>
+                <Label Content="Afstand* (in km): " Grid.Column="0"/>
                 <TextBox x:Name="afstandCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="4">
@@ -69,7 +69,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Gemiddelde wattage: " Grid.Column="0"/>
+                <Label Content="Gemiddelde wattage*: " Grid.Column="0"/>
                 <TextBox x:Name="avgWattage" Grid.Column="1" Margin="5"/>
             </Grid>
             <Grid Grid.Row="7">
