@@ -48,5 +48,26 @@ namespace TrainingManagerUI
                 MessageBox.Show($"Nothing selected", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void MenuItemHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = new MainWindow();
+            w.Show();
+            Close();
+        }
+
+        private void MenuItemRunning_Click(object sender, RoutedEventArgs e)
+        {
+            RunningSessionWindow rw = new RunningSessionWindow(m);
+            rw.Show();
+            Close();
+        }
+
+        private void MenuItemLatest_Click(object sender, RoutedEventArgs e)
+        {
+            LatestSessionWindow lw = new LatestSessionWindow(m);
+            lw.Show();
+            Close();
+        }
     }
 }

@@ -18,6 +18,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0">
                 <TextBlock TextDecorations="Underline" FontSize="20">Add CyclingSession</TextBlock>
@@ -67,10 +69,18 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
+                <Label Content="Gemiddelde wattage: " Grid.Column="0"/>
+                <TextBox x:Name="avgWattage" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
                 <Label Content="Type training*: " Grid.Column="0"/>
                 <ListBox x:Name="trainingTypeCyclingSession" Grid.Column="1" Margin="5"/>
             </Grid>
-            <Grid Grid.Row="7">
+            <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="4*"/>
@@ -80,7 +90,15 @@
                     <TextBox x:Name="commentaarCyclingSession"  Margin="5"/>
                 </ScrollViewer>
             </Grid>
-            <Button Content="Add CyclingSession" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+            <Grid Grid.Row="9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Type fiets*: " Grid.Column="0"/>
+                <ListBox x:Name="typeFietsListBox" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Button Content="Add CyclingSession" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

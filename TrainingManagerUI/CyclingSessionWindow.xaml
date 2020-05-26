@@ -5,11 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainingManagerUI"
         mc:Ignorable="d"
-        Title="CyclingSessionRemoveWindow" Height="300" Width="420"
+        Title="Cycling Session" Height="300" Width="420"
         MinHeight="300"
         MinWidth="420">
     <Grid>
-        <DockPanel Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="131*"/>
+        </Grid.RowDefinitions>
+        <!--Menu-->
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem x:Name="Home" Header="Home" Click="MenuItemHome_Click"/>
+                <MenuItem x:Name="MenuItemRunning" Header="RunningSession" Click="MenuItemRunning_Click"/>
+                <MenuItem x:Name="MenuItemLatest" Header="Latest Sessions" Click="MenuItemLatest_Click"/>
+            </Menu>
+        </DockPanel>
+        <!--CyclingSession-->
+        <DockPanel Margin="10" Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="223*"/>

@@ -25,6 +25,7 @@ namespace TrainingManagerUI
             m = trainingmg;
             DatePickerCycling.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
             trainingTypeCyclingSession.ItemsSource = Enum.GetNames(typeof(TrainingType)); // insert trainingtypes
+            typeFietsListBox.ItemsSource = Enum.GetNames(typeof(BikeType));//Insert biketypes
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,12 +33,15 @@ namespace TrainingManagerUI
             DateTime when; TimeSpan whenAdditional;
             int distance; TimeSpan time; float averageSpeed;
             TrainingType trainingtype; string comment = commentaarCyclingSession.Text;
+            BikeType bikeType; int averageWatt;
             #region parsers
             bool distanceW = int.TryParse(afstandCyclingSession.Text, out distance);
             bool timeW = TimeSpan.TryParse(tijdsduurCyclingSession.Text, out time);
             bool averageSpeedW = float.TryParse(gemiddeldeSnelheidCyclingSession.Text, out averageSpeed);
             bool whenAdditionalW = TimeSpan.TryParse(tijdStipCyclingSession.Text, out whenAdditional);
+            bool averageWattW = int.TryParse(avgWattage.Text, out averageWatt);
             Enum.TryParse((string?)trainingTypeCyclingSession.SelectedItem, out trainingtype);
+            Enum.TryParse((string?)typeFietsListBox.SelectedItem, out bikeType);
             #endregion
             if (!DatePickerCycling.SelectedDate.HasValue)
             {
@@ -55,13 +59,17 @@ namespace TrainingManagerUI
             {
                 MessageBox.Show("Time not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else if (!averageWattW) 
+            {
+                MessageBox.Show("Average Watt not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             else if (!averageSpeedW)
             {
                 when = (DateTime)DatePickerCycling.SelectedDate;
                 when.Add(whenAdditional);
                 try
                 {
-                   // m.AddCyclingTraining(when, distance, time, null, trainingtype, comment);
+                    m.AddCyclingTraining(when, distance, time, null,averageWatt, trainingtype, comment,bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception)
@@ -75,7 +83,7 @@ namespace TrainingManagerUI
                 when.Add(whenAdditional);
                 try
                 {
-                  //  m.AddCyclingTraining(when, distance, time, averageSpeed, trainingtype, comment);
+                    m.AddCyclingTraining(when, distance, time, averageSpeed,averageWatt, trainingtype, comment,bikeType);
                     MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception)

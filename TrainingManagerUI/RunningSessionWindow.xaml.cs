@@ -31,7 +31,7 @@ namespace TrainingManagerUI
 
         private void btnAddRunningSession_Click(object sender, RoutedEventArgs e)
         {
-            RunningSessionAddWindow rsa = new RunningSessionAddWindow(m);
+            RunningSessionAddWindow rsa = new RunningSessionAddWindow(m,this);
             rsa.Show();
         }
 
@@ -49,6 +49,32 @@ namespace TrainingManagerUI
             {
                 MessageBox.Show($"Nothing selected", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        #region menu
+        private void MenuItemHome_Click(object sender, RoutedEventArgs e)
+        {
+                MainWindow w = new MainWindow();
+                w.Show();
+            Close();
+        }
+
+        private void MenuItemCycling_Click(object sender, RoutedEventArgs e)
+        {
+                CyclingSessionWindow rw = new CyclingSessionWindow(m);
+                rw.Show();
+            Close();
+        }
+
+        private void MenuItemLatest_Click(object sender, RoutedEventArgs e)
+        {
+                LatestSessionWindow lw = new LatestSessionWindow(m);
+                lw.Show();
+            Close();
+        }
+        #endregion
+        public void RefreshRunningSessions() 
+        {
+            runninsSessionBox.ItemsSource = m.GetAllRunningSessions();
         }
     }
 }

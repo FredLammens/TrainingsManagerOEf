@@ -24,5 +24,31 @@ namespace TrainingManagerUI
             InitializeComponent();
             m = trainingmg;
         }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+                MainWindow w = new MainWindow();
+                w.Show();
+            Close();
+        }
+
+        private void MenuItemCycling_Click(object sender, RoutedEventArgs e)
+        {
+                CyclingSessionWindow rw = new CyclingSessionWindow(m);
+                rw.Show();
+            Close();
+        }
+
+        private void MenuItemRunning_Click(object sender, RoutedEventArgs e)
+        {
+                RunningSessionWindow rw = new RunningSessionWindow(m);
+                rw.Show();
+            Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

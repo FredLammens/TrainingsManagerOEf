@@ -20,10 +20,12 @@ namespace TrainingManagerUI
     public partial class RunningSessionAddWindow : Window
     {
         private TrainingManager m;
-        public RunningSessionAddWindow(TrainingManager trainingmg)
+        private RunningSessionWindow parent;
+        public RunningSessionAddWindow(TrainingManager trainingmg,RunningSessionWindow parent)
         {
             InitializeComponent();
             m = trainingmg;
+            this.parent = parent;
             DatePickerRunning.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
             trainingTypeRunningSession.ItemsSource = Enum.GetNames(typeof(TrainingType)); // insert trainingtypes
         }
@@ -59,11 +61,12 @@ namespace TrainingManagerUI
             else if (!averageSpeedW)
             {
                 when = (DateTime)DatePickerRunning.SelectedDate;
-                when.Add(whenAdditional);
+                when = when.Add(whenAdditional);
                 try
                 {
                     m.AddRunningTraining(when, distance, time, null, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                    parent.RefreshRunningSessions();
                 }
                 catch (Exception)
                 {
@@ -73,11 +76,12 @@ namespace TrainingManagerUI
             else
             {
                 when = (DateTime)DatePickerRunning.SelectedDate;
-                when.Add(whenAdditional);
+                when = when.Add(whenAdditional);
                 try
                 {
                     m.AddRunningTraining(when, distance, time, averageSpeed, trainingtype, comment);
                     MessageBox.Show("Runningsession added", "RunningSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                    parent.RefreshRunningSessions();
                 }
                 catch (Exception)
                 {

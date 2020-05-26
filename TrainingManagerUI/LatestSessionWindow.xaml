@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainingManagerUI"
         mc:Ignorable="d"
-        Title="LatestSessionWindow" Height="450" Width="800">
+        Title="Latest Session" Height="360" Width="360"
+        MinHeight="360"
+        MinWidth="360">
     <Grid>
-        
+        <Grid>
+            <!--Algemeen-->
+            <!--1-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <!--Menu-->
+                <DockPanel Grid.Row="0">
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="Home" Header="Home" Click="Home_Click" />
+                        <MenuItem x:Name="MenuItemCycling" Header="CyclingSession" Click="MenuItemCycling_Click"/>
+                        <MenuItem x:Name="MenuItemRunning" Header="RunningSession" Click="MenuItemRunning_Click"/>
+                    </Menu>
+                </DockPanel>
+                <!--Titel-->
+                <Label Grid.Row="1">
+                    <TextBlock TextDecorations="Underline" FontSize="20">Trainingen per maand</TextBlock>
+                </Label>
+                <!--Monthly Sessions-->
+                <DataGrid Grid.Row="2" x:Name="trainingPerMonthDataGrid" Margin="3"/>
+                <!--FormSpace-->
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                        <CheckBox x:Name="cyclingCheckBox" Content="Cycling" FlowDirection="RightToLeft" Margin="5"/>
+                        <CheckBox x:Name="runningCheckBox" Content="Running" FlowDirection="RightToLeft" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column ="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="52*"/>
+                                <ColumnDefinition Width="105*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Year: " Grid.Column="0"/>
+                            <TextBox x:Name="yearTextBox" Grid.Column="1"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Month: " Grid.Column="0"/>
+                            <TextBox x:Name="monthTextBox" Grid.Column="1"/>
+                        </Grid>
+                    </StackPanel>
+                    <Grid Grid.Column="2">
+                        <Button Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

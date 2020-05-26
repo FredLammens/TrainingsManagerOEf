@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainingManagerUI"
         mc:Ignorable="d"
-        Title="TrainingManager" Height="360" Width="360"
+        Title="Home" Height="360" Width="360"
         MinHeight="360" MinWidth="360">
     <Grid>
         <Grid>
@@ -21,10 +21,8 @@
                 <!--Menu-->
                 <DockPanel Grid.Row="0">
                     <Menu DockPanel.Dock="Top">
-                        <MenuItem x:Name="MenuItemCycling" Header="CyclingSession" Click="MenuItemCycling_Click">
-                        </MenuItem>
-                        <MenuItem x:Name="MenuItemRunning" Header="RunningSession" Click="MenuItemRunning_Click">
-                        </MenuItem>
+                        <MenuItem x:Name="MenuItemCycling" Header="CyclingSession" Click="MenuItemCycling_Click"/>
+                        <MenuItem x:Name="MenuItemRunning" Header="RunningSession" Click="MenuItemRunning_Click"/>
                         <MenuItem x:Name="MenuItemLatest" Header="Latest Sessions" Click="MenuItemLatest_Click"/>
                     </Menu>
                 </DockPanel>
@@ -33,7 +31,6 @@
                     <TextBlock TextDecorations="Underline" FontSize="20">Trainingen per maand</TextBlock>
                 </Label>
                 <!--Monthly Sessions-->
-                <!--ToDo: Replace with chart-->
                 <DataGrid Grid.Row="2" x:Name="trainingPerMonthDataGrid" Margin="3"/>
                 <!--FormSpace-->
                 <Grid Grid.Row="3">
@@ -68,7 +65,6 @@
                         <Button Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
                     </Grid>
                 </Grid>
-                <DataGrid x:Name="trainingPerMonthDataGrid1" Grid.Row="2"/>
             </Grid>
         </Grid>
     </Grid>

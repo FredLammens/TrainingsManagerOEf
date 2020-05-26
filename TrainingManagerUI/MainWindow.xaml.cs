@@ -44,16 +44,19 @@ namespace TrainingManagerUI
                 {
                     rapport = m.GenerateMonthlyTrainingsReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.TimeLine;
+                    trainingPerMonthDataGrid.Items.Refresh();
                 }
                 else if (cycling == true)
                 {
                     rapport = m.GenerateMonthlyCyclingReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.Rides;
+                    trainingPerMonthDataGrid.Items.Refresh();
                 }
-                else
+                else if(running == true)
                 {
                     rapport = m.GenerateMonthlyRunningReport(year, month);
                     trainingPerMonthDataGrid.ItemsSource = rapport.Runs;
+                    trainingPerMonthDataGrid.Items.Refresh();
                 }
             }
             else if (!yearW)
@@ -72,18 +75,21 @@ namespace TrainingManagerUI
         {
             RunningSessionWindow rsw = new RunningSessionWindow(m);
             rsw.Show();
+            Close();
         }
 
         private void MenuItemCycling_Click(object sender, RoutedEventArgs e)
         {
             CyclingSessionWindow csw = new CyclingSessionWindow(m);
             csw.Show();
+            Close();
         }
 
         private void MenuItemLatest_Click(object sender, RoutedEventArgs e)
         {
             LatestSessionWindow lsw = new LatestSessionWindow(m);
             lsw.Show();
+            Close();
         }
         #endregion
     }
