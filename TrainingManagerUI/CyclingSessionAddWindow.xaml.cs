@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLibrary.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,71 @@ namespace TrainingManagerUI
     /// </summary>
     public partial class CyclingSessionAddWindow : Window
     {
-        public CyclingSessionAddWindow()
+        private TrainingManager m;
+        public CyclingSessionAddWindow(TrainingManager trainingmg)
         {
             InitializeComponent();
+            m = trainingmg;
+            DatePickerCycling.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
+            trainingTypeCyclingSession.ItemsSource = Enum.GetNames(typeof(TrainingType)); // insert trainingtypes
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime when; TimeSpan whenAdditional;
+            int distance; TimeSpan time; float averageSpeed;
+            TrainingType trainingtype; string comment = commentaarCyclingSession.Text;
+            #region parsers
+            bool distanceW = int.TryParse(afstandCyclingSession.Text, out distance);
+            bool timeW = TimeSpan.TryParse(tijdsduurCyclingSession.Text, out time);
+            bool averageSpeedW = float.TryParse(gemiddeldeSnelheidCyclingSession.Text, out averageSpeed);
+            bool whenAdditionalW = TimeSpan.TryParse(tijdStipCyclingSession.Text, out whenAdditional);
+            Enum.TryParse((string?)trainingTypeCyclingSession.SelectedItem, out trainingtype);
+            #endregion
+            if (!DatePickerCycling.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Date not entered!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!whenAdditionalW)
+            {
+                MessageBox.Show("Time not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!distanceW)
+            {
+                MessageBox.Show("Distance not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!timeW)
+            {
+                MessageBox.Show("Time not entered or incorrectly!", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!averageSpeedW)
+            {
+                when = (DateTime)DatePickerCycling.SelectedDate;
+                when.Add(whenAdditional);
+                try
+                {
+                   // m.AddCyclingTraining(when, distance, time, null, trainingtype, comment);
+                    MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Recheck your values pls", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                when = (DateTime)DatePickerCycling.SelectedDate;
+                when.Add(whenAdditional);
+                try
+                {
+                  //  m.AddCyclingTraining(when, distance, time, averageSpeed, trainingtype, comment);
+                    MessageBox.Show("Cyclingsession added", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Recheck your values pls", "CyclingSession", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

@@ -5,23 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainingManagerUI"
         mc:Ignorable="d"
-        Title="CyclingSessionRemoveWindow" Height="450" Width="800">
+        Title="CyclingSessionRemoveWindow" Height="300" Width="420"
+        MinHeight="300"
+        MinWidth="420">
     <Grid>
         <DockPanel Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="313*"/>
-                    <ColumnDefinition Width="77*"/>
+                    <ColumnDefinition Width="223*"/>
+                    <ColumnDefinition Width="157*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1" Margin="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Name="btnAddCyclingSession" Click="btnAddCyclingSession_Click"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Width="133">Add CyclingSession</Button>
-                    <Button Name="btnRemoveCyclingSession" Click="btnRemoveCyclingSession_Click"  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Width="133" >Remove CyclingSession</Button>
+                    <Button Name="btnAddCyclingSession" Click="btnAddCyclingSession_Click" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Width="133">Add CyclingSession</Button>
+                    <Button Name="btnRemoveCyclingSession" Click="btnRemoveCyclingSession_Click" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Width="133" >Remove CyclingSession</Button>
                 </Grid>
-                <ListBox Name="runninsSessionBox" DisplayMemberPath="Name" Margin="5,5,5,5" Grid.Column="0"/>
+                <ListBox Name="cyclingSessionBox" Margin="5,5,5,5" Grid.Column="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Run : "/>
+                                <TextBlock Text="Id: "/>
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text=" When: "/>
+                                <TextBlock Text="{Binding When}"/>
+                                <TextBlock Text=" Distance: "/>
+                                <TextBlock Text="{Binding Distance}"/>
+                                <TextBlock Text=" Time: "/>
+                                <TextBlock Text="{Binding Time}"/>
+                                <TextBlock Text=" AverageSpeed: "/>
+                                <TextBlock Text="{Binding AverageSpeed}"/>
+                                <TextBlock Text=" AverageWatt: "/>
+                                <TextBlock Text="{Binding AverageWatt}"/>
+                                <TextBlock Text=" TrainingType: "/>
+                                <TextBlock Text="{Binding TrainingType}"/>
+                                <TextBlock Text=" BikeType: "/>
+                                <TextBlock Text="{Binding BikeType}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </DockPanel>
     </Grid>

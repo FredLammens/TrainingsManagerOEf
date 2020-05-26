@@ -7,6 +7,80 @@
         mc:Ignorable="d"
         Title="CyclingSessionWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0">
+                <TextBlock TextDecorations="Underline" FontSize="20">Add CyclingSession</TextBlock>
+            </Label>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Datum start training *: " Grid.Column="0"/>
+                <DatePicker x:Name="DatePickerCycling" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Tijdstip*: " Grid.Column="0"/>
+                <TextBox x:Name="tijdStipCyclingSession" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Afstand* (in m): " Grid.Column="0"/>
+                <TextBox x:Name="afstandCyclingSession" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Tijdsduur*: " Grid.Column="0"/>
+                <TextBox x:Name="tijdsduurCyclingSession" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Gemiddelde snelheid: " Grid.Column="0"/>
+                <TextBox x:Name="gemiddeldeSnelheidCyclingSession" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Type training*: " Grid.Column="0"/>
+                <ListBox x:Name="trainingTypeCyclingSession" Grid.Column="1" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Commentaar: " Grid.Column="0"/>
+                <ScrollViewer Grid.Column="1">
+                    <TextBox x:Name="commentaarCyclingSession"  Margin="5"/>
+                </ScrollViewer>
+            </Grid>
+            <Button Content="Add CyclingSession" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+        </Grid>
     </Grid>
 </Window>
